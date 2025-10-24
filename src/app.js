@@ -11,19 +11,8 @@ dotenv.config();
 const app = express();
 
 // 🧩 Habilitar CORS apenas para domínios permitidos
-app.use(cors({
-    origin: [
-        "https://uniaene.edu.br",
-        "https://www.uniaene.edu.br",
-        "https://sorteio.uniaene.edu.br",
-        "http://sorteio.uniaene.edu.br",
-        "http://localhost",
-        "http://13.221.21.114", // ✅ adiciona o IP público do servidor
-        "http://13.221.21.114:3000" // ✅ adiciona com a porta também
-    ],
-    methods: ["GET", "POST", "OPTIONS"],
-    credentials: true
-}));
+app.use(cors({ origin: "*" }));
+
 
 // 🧱 Middlewares principais
 app.use(express.json());
