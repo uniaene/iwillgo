@@ -29,3 +29,7 @@ mongoose.connect(process.env.MONGO_URI)
         startSyncWorkerEvery5s(); // 🔁 inicia o worker automático
     })
     .catch((err) => console.error("Erro MongoDB:", err));
+
+app.get("/", (req, res) => {
+    res.send("🚀 Servidor Node.js funcionando perfeitamente via HTTPS!");
+});
