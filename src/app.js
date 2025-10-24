@@ -32,8 +32,7 @@ app.use(express.static("public")); // serve dashboard.html
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("✅ Conectado ao MongoDB");
-        app.listen(3000, "127.0.0.1", () => console.log("🚀 API rodando localmente na porta 3000"));
-        // app.listen(3000, () => console.log("🚀 Servidor rodando na porta 3000"));
+        app.listen(3000, () => console.log("🚀 Servidor rodando na porta 3000"));
         startSyncWorkerEvery5s(); // 🔁 inicia o worker automático
     })
     .catch((err) => console.error("Erro MongoDB:", err));
