@@ -10,9 +10,16 @@ import { startSyncWorkerEvery5s } from "./workers/syncToMySQL.js";
 dotenv.config();
 const app = express();
 
-// 🧩 Habilitar CORS apenas para domínios permitidos
-app.use(cors({ origin: "*" }));
+// 🚨 Força os cabeçalhos de CORS manualmente (antes de tudo)
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
+// 🧩 (opcional) também ativa o middleware oficial do cors
+app.use(cors({ origin: "*" }));
 
 // 🧱 Middlewares principais
 app.use(express.json());
